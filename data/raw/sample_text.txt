@@ -1,0 +1,10 @@
+The quick brown fox jumps over the lazy dog.
+Hello world from Hadoop MapReduce.
+This is a simple word count example.
+MapReduce processes large datasets efficiently.
+Hadoop provides distributed storage and processing.
+The word count program counts word frequencies.
+This example demonstrates basic MapReduce concepts.
+Each word is mapped to a key-value pair.
+Reducers aggregate counts for each word.
+Hello world hello Hadoop hello MapReduce.

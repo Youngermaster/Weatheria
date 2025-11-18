@@ -82,6 +82,40 @@ target/
 profile_default/
 ipython_config.py
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Data files (keep structure, ignore content)
+data/raw/*.csv
+data/processed/*.csv
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Output files
+output/*.csv
+output/*.txt
+output/part-*
+!output/.gitkeep
+
+# Hadoop logs
+logs/
+
+# AWS credentials
+.aws/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Docker
+.dockerignore
+
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
 #   intended to run in multiple environments; otherwise, check them in:

@@ -1,27 +1,124 @@
 version: '3.8'
 
 services:
-  hadoop:
+  namenode:
     build:
       context: .
       dockerfile: docker/Dockerfile.hadoop
-    container_name: weatheria-hadoop
-    hostname: hadoop
+    container_name: weatheria-namenode
+    hostname: namenode
     ports:
-      - "50070:50070"  # HDFS NameNode Web UI
-      - "8088:8088"    # YARN ResourceManager Web UI
-      - "19888:19888"  # MapReduce Job History Server
+      - "9870:9870" # HDFS Web UI (Hadoop 3.x)
+      - "9000:9000" # HDFS IPC
     volumes:
-      - ./data:/weatheria/data
-      - ./src/mapreduce:/weatheria/scripts
-      - ./output:/weatheria/output
-      - hadoop-data:/tmp/hadoop-root
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - namenode-data:/tmp/hadoop-root/dfs/name
     environment:
-      - HADOOP_HOME=/usr/local/hadoop
+      - HADOOP_HOME=/opt/hadoop
+      - HDFS_NAMENODE_USER=root
+      - HDFS_DATANODE_USER=root
+      - HDFS_SECONDARYNAMENODE_USER=root
+      - YARN_RESOURCEMANAGER_USER=root
+      - YARN_NODEMANAGER_USER=root
+    command: ["hdfs", "namenode"]
     networks:
       - weatheria-network
-    stdin_open: true
-    tty: true
+
+  datanode1:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.hadoop
+    container_name: weatheria-datanode1
+    hostname: datanode1
+    depends_on:
+      - namenode
+    volumes:
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - datanode1-data:/tmp/hadoop-root/dfs/data
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+      - HDFS_DATANODE_USER=root
+    command: ["hdfs", "datanode"]
+    networks:
+      - weatheria-network
+
+  datanode2:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.hadoop
+    container_name: weatheria-datanode2
+    hostname: datanode2
+    depends_on:
+      - namenode
+    volumes:
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - datanode2-data:/tmp/hadoop-root/dfs/data
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+      - HDFS_DATANODE_USER=root
+    command: ["hdfs", "datanode"]
+    networks:
+      - weatheria-network
+
+  resourcemanager:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.hadoop
+    container_name: weatheria-resourcemanager
+    hostname: resourcemanager
+    ports:
+      - "8088:8088" # YARN Web UI
+    depends_on:
+      - namenode
+    volumes:
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+      - YARN_RESOURCEMANAGER_USER=root
+    command: ["yarn", "resourcemanager"]
+    networks:
+      - weatheria-network
+
+  nodemanager1:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.hadoop
+    container_name: weatheria-nodemanager1
+    hostname: nodemanager1
+    depends_on:
+      - resourcemanager
+      - namenode
+      - datanode1
+      - datanode2
+    volumes:
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+      - YARN_NODEMANAGER_USER=root
+    command: ["yarn", "nodemanager"]
+    networks:
+      - weatheria-network
+
+  historyserver:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.hadoop
+    container_name: weatheria-historyserver
+    hostname: historyserver
+    ports:
+      - "19888:19888"
+    depends_on:
+      - namenode
+      - resourcemanager
+    volumes:
+      - ./config/hadoop:/opt/hadoop/etc/hadoop
+      - ./output:/weatheria/output
+    environment:
+      - HADOOP_HOME=/opt/hadoop
+      - MAPRED_HISTORYSERVER_USER=root
+    command: ["mapred", "historyserver"]
+    networks:
+      - weatheria-network
 
   api:
     build:
@@ -33,13 +130,16 @@ services:
     volumes:
       - ./src:/app
       - ./output:/app/output
+      - ./config/hadoop:/opt/hadoop/etc/hadoop # Mount config to API too if it needs to talk to HDFS
     environment:
       - PYTHONUNBUFFERED=1
       - RESULTS_DIR=/app/output
+      - HADOOP_CONF_DIR=/opt/hadoop/etc/hadoop
     networks:
       - weatheria-network
     depends_on:
-      - hadoop
+      - namenode
+      - resourcemanager
     command: uvicorn api.main:app --host 0.0.0.0 --port 8000 --reload
 
 networks:
@@ -47,4 +147,6 @@ networks:
     driver: bridge
 
 volumes:
-  hadoop-data:
+  namenode-data:
+  datanode1-data:
+  datanode2-data:

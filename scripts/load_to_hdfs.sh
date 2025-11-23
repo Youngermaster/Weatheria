@@ -9,7 +9,7 @@ echo "Weatheria Climate Observatory - HDFS Data Loader"
 echo "============================================================"
 
 # Default data file
-DATA_FILE=${1:-"data/raw/test_weather_data.csv"}
+DATA_FILE=${1:-"data/raw/medellin_weather_2022-2024.csv"}
 TEXT_FILE="data/raw/sample_text.txt"
 
 # Check if running in Docker
@@ -17,11 +17,8 @@ if [ -f "/.dockerenv" ]; then
     echo "✓ Running inside Docker container"
     HDFS_CMD="hdfs dfs"
 else
-    echo "✓ Running locally (use Docker for full Hadoop setup)"
-    echo "⚠️  Starting Hadoop container..."
-    docker-compose up -d hadoop
-    sleep 5
-    HDFS_CMD="docker exec weatheria-hadoop hdfs dfs"
+    echo "✓ Running locally"
+    HDFS_CMD="docker exec weatheria-namenode hdfs dfs"
 fi
 
 echo ""
@@ -38,8 +35,8 @@ if [ -f "$DATA_FILE" ]; then
     if [ -f "/.dockerenv" ]; then
         $HDFS_CMD -put -f "$DATA_FILE" /user/hadoop/weatheria/input/
     else
-        docker cp "$DATA_FILE" weatheria-hadoop:/tmp/weather_data.csv
-        docker exec weatheria-hadoop hdfs dfs -put -f /tmp/weather_data.csv /user/hadoop/weatheria/input/
+        docker cp "$DATA_FILE" weatheria-namenode:/tmp/weather_data.csv
+        docker exec weatheria-namenode hdfs dfs -put -f /tmp/weather_data.csv /user/hadoop/weatheria/input/
     fi
     echo "   ✓ Weather data uploaded"
 else
@@ -52,8 +49,8 @@ if [ -f "$TEXT_FILE" ]; then
     if [ -f "/.dockerenv" ]; then
         $HDFS_CMD -put -f "$TEXT_FILE" /user/hadoop/weatheria/input/
     else
-        docker cp "$TEXT_FILE" weatheria-hadoop:/tmp/sample_text.txt
-        docker exec weatheria-hadoop hdfs dfs -put -f /tmp/sample_text.txt /user/hadoop/weatheria/input/
+        docker cp "$TEXT_FILE" weatheria-namenode:/tmp/sample_text.txt
+        docker exec weatheria-namenode hdfs dfs -put -f /tmp/sample_text.txt /user/hadoop/weatheria/input/
     fi
     echo "   ✓ Text file uploaded"
 fi

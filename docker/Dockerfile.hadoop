@@ -9,13 +9,14 @@ RUN apt-get update && \
 # Install Hadoop
 ENV HADOOP_VERSION=3.3.6
 ENV HADOOP_HOME=/opt/hadoop
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-arm64
 ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 RUN wget https://dlcdn.apache.org/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz -O /tmp/hadoop.tar.gz && \
     tar -xzf /tmp/hadoop.tar.gz -C /opt && \
     mv /opt/hadoop-${HADOOP_VERSION} /opt/hadoop && \
-    rm /tmp/hadoop.tar.gz
+    rm /tmp/hadoop.tar.gz && \
+    rm -rf /opt/hadoop/share/doc /opt/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar
 
 # Python libs
 RUN pip3 install mrjob pandas numpy

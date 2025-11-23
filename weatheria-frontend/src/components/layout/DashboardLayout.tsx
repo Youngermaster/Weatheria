@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 
 const navigation = [
-  { name: 'Dashboard', to: '/', icon: Home },
+  { name: 'Dashboard', to: '/dashboard', icon: Home },
   { name: 'Monthly Analysis', to: '/monthly', icon: TrendingUp },
   { name: 'Extreme Temperatures', to: '/extreme', icon: Thermometer },
   { name: 'Precipitation Analysis', to: '/precipitation', icon: Droplets },

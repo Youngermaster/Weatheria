@@ -9,16 +9,16 @@ import './App.css';
 
 function App() {
   return (
-    <DashboardLayout>
-      <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/monthly" element={<MonthlyAnalysis />} />
-        <Route path="/extreme" element={<ExtremeAnalysis />} />
-        <Route path="/precipitation" element={<PrecipitationAnalysis />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </DashboardLayout>
+    <Routes>
+      <Route path="/" element={<DashboardLayout />}>
+        <Route index element={<Navigate to="/dashboard" replace />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="monthly" element={<MonthlyAnalysis />} />
+        <Route path="extreme" element={<ExtremeAnalysis />} />
+        <Route path="precipitation" element={<PrecipitationAnalysis />} />
+        <Route path="about" element={<About />} />
+      </Route>
+    </Routes>
   );
 }
 

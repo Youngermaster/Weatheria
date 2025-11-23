@@ -17,13 +17,17 @@ def convert_monthly_avg():
         writer.writerow(['month', 'avg_max', 'avg_min'])
 
         for line in fin:
-            # Remove quotes and parse
+            # Remove quotes and parse - Hadoop output uses quotes around values
             line = line.strip().replace('"', '')
-            parts = line.split('\t')
+            # Replace literal \t with actual tab
+            line = line.replace('\\t', '\t')
+            # Split by tab - first tab separates key from value
+            parts = line.split('\t', 1)  # Split only on first tab
             if len(parts) >= 2:
                 month = parts[0]
-                # Parts[1] contains "avg_max\tavg_min"
-                temps = parts[1].split('\t')
+                # Second part contains "avg_max\tavg_min" format
+                value_part = parts[1]
+                temps = value_part.split('\t')
                 if len(temps) >= 2:
                     writer.writerow([month, temps[0], temps[1]])
 
@@ -42,11 +46,13 @@ def convert_extreme_temps():
         for line in fin:
             # Remove quotes and parse
             line = line.strip().replace('"', '')
-            parts = line.split('\t')
+            line = line.replace('\\t', '\t')
+            parts = line.split('\t', 1)  # Split only on first tab
             if len(parts) >= 2:
                 category = parts[0]
-                # Parts[1] contains "count\tavg_temp"
-                stats = parts[1].split('\t')
+                # Second part contains "count\tavg_temp"
+                value_part = parts[1]
+                stats = value_part.split('\t')
                 if len(stats) >= 2:
                     writer.writerow([category, stats[0], stats[1]])
 
@@ -65,11 +71,13 @@ def convert_temp_precip():
         for line in fin:
             # Remove quotes and parse
             line = line.strip().replace('"', '')
-            parts = line.split('\t')
+            line = line.replace('\\t', '\t')
+            parts = line.split('\t', 1)  # Split only on first tab
             if len(parts) >= 2:
                 month = parts[0]
-                # Parts[1] contains "corr\tavg_temp\tavg_precip\trainy_days\ttotal_precip"
-                stats = parts[1].split('\t')
+                # Second part contains "corr\tavg_temp\tavg_precip\trainy_days\ttotal_precip"
+                value_part = parts[1]
+                stats = value_part.split('\t')
                 if len(stats) >= 5:
                     writer.writerow([month, stats[0], stats[1], stats[2], stats[3], stats[4]])
 

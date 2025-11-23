@@ -879,16 +879,6 @@ npm run dev
 - **FastAPI Documentation:** https://fastapi.tiangolo.com/
 - **React Documentation:** https://react.dev/
 
-## License
-
-This project is developed for academic purposes at EAFIT University.
-
-## Authors
-
-- Sebastian Zapata Henao - EAFIT University
-- Course: ST0263 - Distributed Systems
-- Semester: 2025-2
-
 ## Acknowledgments
 
 - Inspired by Weatheria from One Piece

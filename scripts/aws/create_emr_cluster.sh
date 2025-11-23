@@ -13,7 +13,7 @@ fi
 CLUSTER_NAME="weatheria-climate-observatory"
 BUCKET_NAME=${S3_BUCKET:-"weatheria-climate-data"}
 REGION=${AWS_REGION:-"us-east-1"}
-KEY_PAIR=${EMR_KEY_PAIR:-"my-key-pair"}
+KEY_PAIR=${EMR_KEY_PAIR:-"weatheria-keypair"}
 INSTANCE_TYPE="m5.xlarge"
 INSTANCE_COUNT=3
 

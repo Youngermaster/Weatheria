@@ -45,9 +45,9 @@ async def startup_event():
     Run on application startup
     """
     ensure_results_directory()
-    print(f"🚀 Weatheria Climate Observatory API v{settings.api_version}")
-    print(f"📂 Results directory: {settings.results_dir}")
-    print(f"📊 Access docs at: http://{settings.api_host}:{settings.api_port}/docs")
+    print(f"Weatheria Climate Observatory API v{settings.api_version}")
+    print(f"Results directory: {settings.results_dir}")
+    print(f"Access docs at: http://{settings.api_host}:{settings.api_port}/docs")
 
 
 @app.get(

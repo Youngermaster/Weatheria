@@ -17,16 +17,16 @@ class Settings(BaseSettings):
     api_host: str = "0.0.0.0"
     api_port: int = 8000
     
-    # Results directory
-    results_dir: str = "./output"
+    # Results directory (can be overridden with env var RESULTS_DIR)
+    results_dir: str = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "output")
     
     # CORS
     cors_origins: list = ["*"]
     
     # File names
-    monthly_avg_file: str = "monthly_avg_results.csv"
-    extreme_temps_file: str = "extreme_temps_results.csv"
-    temp_precip_file: str = "temp_precip_results.csv"
+    monthly_avg_file: str = "monthly_avg_fixed.csv"
+    extreme_temps_file: str = "extreme_temps_fixed.csv"
+    temp_precip_file: str = "temp_precip_fixed.csv"
     
     class Config:
         env_file = ".env"

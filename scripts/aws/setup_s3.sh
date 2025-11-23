@@ -31,14 +31,30 @@ fi
 
 # Check AWS credentials
 if ! aws sts get-caller-identity &> /dev/null; then
-    echo "❌ AWS credentials not configured"
+    echo "❌ AWS credentials not configured or session expired"
     echo ""
-    echo "Configure AWS credentials:"
-    echo "   aws configure"
+    echo "For AWS Academy accounts:"
+    echo "   1. Go to AWS Academy Learner Lab"
+    echo "   2. Click 'AWS Details' → 'Show' under AWS CLI"
+    echo "   3. Copy credentials to ~/.aws/credentials"
+    echo ""
+    echo "Example credentials file (~/.aws/credentials):"
+    echo "   [default]"
+    echo "   aws_access_key_id = YOUR_KEY"
+    echo "   aws_secret_access_key = YOUR_SECRET"
+    echo "   aws_session_token = YOUR_TOKEN"
+    echo ""
+    echo "Or set environment variables:"
+    echo "   export AWS_ACCESS_KEY_ID=..."
+    echo "   export AWS_SECRET_ACCESS_KEY=..."
+    echo "   export AWS_SESSION_TOKEN=..."
     exit 1
 fi
 
 echo "✓ AWS CLI configured"
+echo ""
+echo "Current AWS Identity:"
+aws sts get-caller-identity 2>&1 || echo "⚠️  Note: If using AWS Academy, ensure session token is set"
 echo ""
 
 # Create S3 bucket

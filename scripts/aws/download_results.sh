@@ -19,7 +19,7 @@ echo "S3 Bucket: s3://$BUCKET_NAME"
 echo ""
 
 # Create output directory
-mkdir -p output/aws
+mkdir -p output
 
 # Function to download results
 download_result() {
@@ -46,32 +46,31 @@ download_result() {
     echo ""
 }
 
-# Download all results
+# Download all results directly to output/ directory (for API compatibility)
 download_result \
     "output/word_count" \
-    "output/aws/word_count_results.csv" \
+    "output/word_count_results.csv" \
     "Word Count Results"
 
 download_result \
     "output/monthly_avg" \
-    "output/aws/monthly_avg_results.csv" \
+    "output/monthly_avg_results.csv" \
     "Monthly Average Temperature"
 
 download_result \
     "output/extreme_temps" \
-    "output/aws/extreme_temps_results.csv" \
+    "output/extreme_temps_results.csv" \
     "Extreme Temperature Detection"
 
 download_result \
     "output/temp_precip" \
-    "output/aws/temp_precip_results.csv" \
+    "output/temp_precip_results.csv" \
     "Temperature-Precipitation Correlation"
 
 echo "============================================================"
 echo "✅ Results downloaded!"
 echo "============================================================"
 echo ""
-echo "📂 Results location: ./output/aws/"
+echo "📂 Results location: ./output/"
 echo ""
-echo "Copy to main output directory:"
-echo "  cp output/aws/*.csv output/"
+echo "Files are ready for API consumption!"

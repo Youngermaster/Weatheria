@@ -17,6 +17,7 @@ This project processes 3 years of daily weather data using Hadoop MapReduce on A
 - **Cloud Platform**: AWS EMR 6.10.0 (Hadoop 3.3.3)
 - **Storage**: AWS S3
 - **API**: FastAPI
+- **Frontend**: React + TypeScript + Vite
 - **Language**: Python 3.11+
 
 ## Project Structure
@@ -32,6 +33,12 @@ weatheria/
 │       ├── main.py
 │       ├── routers/
 │       └── models/
+├── weatheria-frontend/      # React web application
+│   ├── src/
+│   │   ├── pages/
+│   │   ├── components/
+│   │   └── services/
+│   └── package.json
 ├── scripts/
 │   ├── download_data.py     # Fetch weather data
 │   └── aws/                 # AWS deployment scripts
@@ -87,7 +94,7 @@ Interactive docs: `http://localhost:8000/docs`
 git clone <your-repo-url>
 cd weatheria
 
-# Install dependencies
+# Install Python dependencies
 pip install -r requirements.txt
 
 # Download weather data
@@ -97,6 +104,21 @@ python scripts/download_data.py
 cd src
 uvicorn api.main:app --reload --port 8000
 ```
+
+### Frontend Setup
+
+```bash
+# Navigate to frontend directory
+cd weatheria-frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+Access the web interface at `http://localhost:5173`
 
 ### AWS EMR Deployment
 

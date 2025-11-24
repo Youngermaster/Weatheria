@@ -75,6 +75,7 @@ The system consists of the following components:
 │ Dashboard | Monthly Analysis | Extreme Temps | Correlation │
 └─────────────────────────────────────────────────────────────┘
 ```
+<img width="2729" height="1750" alt="Diagram" src="https://github.com/user-attachments/assets/42b1acec-e72d-44bb-a354-65e91100fc3f" />
 
 ## Prerequisites
 

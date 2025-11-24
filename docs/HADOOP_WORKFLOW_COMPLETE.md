@@ -1,10 +1,10 @@
-# Weatheria Climate Observatory - Complete Hadoop MapReduce Workflow
+﻿# Weatheria Climate Observatory - Complete Hadoop MapReduce Workflow
 
-## 🎉 Success Summary
+##  Success Summary
 
 The complete end-to-end Hadoop MapReduce workflow has been successfully implemented and tested!
 
-### ✅ What We Accomplished
+###  What We Accomplished
 
 1. **Distributed Hadoop Cluster** - Running with:
    - 1 NameNode
@@ -111,13 +111,13 @@ docker exec weatheria-namenode bash -c "cd /tmp && python3 monthly_avg_temp.py \
 
 **MapReduce Execution Details:**
 ```
-✓ Launched map tasks: 2
-✓ Launched reduce tasks: 1
-✓ Map input records: 1,097
-✓ Map output records: 1,096
-✓ Reduce input groups: 36
-✓ Reduce output records: 36
-✓ Job completed successfully
+ Launched map tasks: 2
+ Launched reduce tasks: 1
+ Map input records: 1,097
+ Map output records: 1,096
+ Reduce input groups: 36
+ Reduce output records: 36
+ Job completed successfully
 ```
 
 **Verify Output:**
@@ -148,10 +148,10 @@ docker exec weatheria-namenode bash -c "cd /tmp && python3 extreme_temps.py \
 
 **MapReduce Execution:**
 ```
-✓ Map input records: 1,097
-✓ Map output records: 1,109 (some days have multiple categories)
-✓ Reduce input groups: 4 (normal, cool, very_cool, very_hot)
-✓ Reduce output records: 4
+ Map input records: 1,097
+ Map output records: 1,109 (some days have multiple categories)
+ Reduce input groups: 4 (normal, cool, very_cool, very_hot)
+ Reduce output records: 4
 ```
 
 **Results:**
@@ -182,10 +182,10 @@ docker exec weatheria-namenode bash -c "cd /tmp && python3 temp_precipitation.py
 
 **MapReduce Execution:**
 ```
-✓ Map input records: 1,097
-✓ Map output records: 1,096
-✓ Reduce input groups: 36
-✓ Reduce output records: 36 (one per month)
+ Map input records: 1,097
+ Map output records: 1,096
+ Reduce input groups: 36
+ Reduce output records: 36 (one per month)
 ```
 
 **Sample Results:**
@@ -224,9 +224,9 @@ python3 scripts/convert_hadoop_output.py
 
 **Output:**
 ```
-✓ Converted monthly averages: output/monthly_avg_results.csv (37 lines)
-✓ Converted extreme temperatures: output/extreme_temps_results.csv (5 lines)
-✓ Converted temp-precipitation: output/temp_precip_results.csv (37 lines)
+ Converted monthly averages: output/monthly_avg_results.csv (37 lines)
+ Converted extreme temperatures: output/extreme_temps_results.csv (5 lines)
+ Converted temp-precipitation: output/temp_precip_results.csv (37 lines)
 ```
 
 ---
@@ -329,20 +329,20 @@ Raw Data (CSV)  →  HDFS Input  →  MapReduce  →  HDFS Output  →  Local CS
 ## Comparison: Hadoop vs Simple Python
 
 ### Simple Python Script (process_data_simple.py)
-- ✅ Fast for small datasets (<100MB)
-- ✅ Easy to understand and debug
-- ✅ No infrastructure needed
+-  Fast for small datasets (<100MB)
+-  Easy to understand and debug
+-  No infrastructure needed
 - ❌ Single machine processing
 - ❌ Limited by RAM
 - ❌ No fault tolerance
 - ❌ Not scalable
 
 ### Hadoop MapReduce (This Implementation)
-- ✅ **Distributed processing** across multiple nodes
-- ✅ **Fault tolerant** (data replication)
-- ✅ **Scalable** to terabytes/petabytes
-- ✅ **Industry standard** (AWS EMR compatible)
-- ✅ **Production ready**
+-  **Distributed processing** across multiple nodes
+-  **Fault tolerant** (data replication)
+-  **Scalable** to terabytes/petabytes
+-  **Industry standard** (AWS EMR compatible)
+-  **Production ready**
 - ❌ More complex setup
 - ❌ Overkill for small datasets
 
@@ -458,21 +458,21 @@ docker compose build --no-cache
 
 ## Conclusion
 
-✅ **Complete ETL Workflow Implemented:**
-1. ✅ Data Acquisition from Open-Meteo API
-2. ✅ HDFS Distributed Storage (2-node cluster)
-3. ✅ MapReduce Processing (3 analysis jobs)
-4. ✅ Results Extraction and Conversion
-5. ✅ API Integration Ready
+ **Complete ETL Workflow Implemented:**
+1.  Data Acquisition from Open-Meteo API
+2.  HDFS Distributed Storage (2-node cluster)
+3.  MapReduce Processing (3 analysis jobs)
+4.  Results Extraction and Conversion
+5.  API Integration Ready
 
-✅ **Production-Ready Features:**
+ **Production-Ready Features:**
 - Distributed storage with replication
 - Fault-tolerant processing
 - Scalable to AWS EMR
 - Industry-standard Hadoop 3.3.6
 - Complete monitoring via Web UIs
 
-✅ **Academic Requirements Met:**
+ **Academic Requirements Met:**
 - Real climate data (1,096 days)
 - MapReduce implementation in Python
 - Distributed Hadoop cluster
@@ -494,10 +494,10 @@ docker compose build --no-cache
 ---
 
 **Generated:** November 22, 2025
-**Status:** ✅ Fully Functional
+**Status:**  Fully Functional
 **Hadoop Version:** 3.3.6
 **Python Version:** 3.9
 **Data Period:** 2022-2024
 **Location:** Medellín, Colombia
 
-*Inspired by Weatheria from One Piece - Where Science Meets the Clouds* ☁️🌡️
+*Inspired by Weatheria from One Piece - Where Science Meets the Clouds* ☁️�️

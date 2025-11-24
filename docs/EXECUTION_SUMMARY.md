@@ -4,7 +4,7 @@
 
 Successfully implemented and tested a complete MapReduce-based climate analysis system for Medellín, Colombia, analyzing temperature patterns from 2022-2024 to identify climate change trends.
 
-**Status:** ✅ COMPLETE AND OPERATIONAL
+**Status:** COMPLETE AND OPERATIONAL
 **Date:** November 22, 2025
 **Data Points Analyzed:** 1,096 days (3 years)
 **Location:** Medellín, Colombia (6.25°N, 75.56°W)
@@ -13,14 +13,14 @@ Successfully implemented and tested a complete MapReduce-based climate analysis 
 
 ## What Was Accomplished
 
-### 1. Data Acquisition ✅
+### 1. Data Acquisition 
 - **Source:** Open-Meteo Archive API
 - **Dataset:** Complete weather data for Medellín (2022-2024)
 - **Size:** 1,096 daily records
 - **Variables:**
-  - Maximum temperature (°C)
-  - Minimum temperature (°C)
-  - Precipitation (mm)
+ - Maximum temperature (°C)
+ - Minimum temperature (°C)
+ - Precipitation (mm)
 - **File:** `data/raw/medellin_weather_2022-2024.csv`
 
 **Statistics:**
@@ -29,7 +29,7 @@ Successfully implemented and tested a complete MapReduce-based climate analysis 
 - Average max temperature: 26.4°C
 - Average min temperature: 15.4°C
 
-### 2. MapReduce Analysis ✅
+### 2. MapReduce Analysis 
 
 Implemented three MapReduce-style analyses:
 
@@ -41,9 +41,9 @@ Implemented three MapReduce-style analyses:
 - **Warmest month:** March 2024 (avg max: 29.15°C, avg min: 16.75°C)
 - **Coolest month:** June 2022 (avg max: 24.33°C, avg min: 14.33°C)
 - **Trend:** Temperature increase observed from 2022 to 2024
-  - 2022 avg: 25.3°C max, 14.7°C min
-  - 2024 avg: 27.1°C max, 15.9°C min
-  - **+1.8°C warming trend detected**
+ - 2022 avg: 25.3°C max, 14.7°C min
+ - 2024 avg: 27.1°C max, 15.9°C min
+ - **+1.8°C warming trend detected**
 
 #### Analysis 2: Extreme Temperature Detection
 **Purpose:** Identify days with extreme weather conditions
@@ -70,38 +70,38 @@ Implemented three MapReduce-style analyses:
 
 **Climate Change Implication:** This pattern may intensify with warming, potentially leading to water stress.
 
-### 3. REST API Implementation ✅
+### 3. REST API Implementation 
 
 **Technology:** FastAPI
 **Status:** Running on http://localhost:8000
 **Documentation:** http://localhost:8000/docs
 
 **Operational Endpoints:**
-- ✅ `GET /` - Welcome page with all endpoint info
-- ✅ `GET /health` - Health check
-- ✅ `GET /monthly-avg` - Monthly temperature averages (36 months)
-- ✅ `GET /extreme-temps` - Extreme temperature analysis
-- ✅ `GET /temp-precipitation` - Correlation analysis
-- ⚠️ `GET /stats` - Overall statistics (minor parsing issue, non-critical)
-- ✅ `GET /download/{type}` - Download CSV results
+- `GET /` - Welcome page with all endpoint info
+- `GET /health` - Health check
+- `GET /monthly-avg` - Monthly temperature averages (36 months)
+- `GET /extreme-temps` - Extreme temperature analysis
+- `GET /temp-precipitation` - Correlation analysis
+- `GET /stats` - Overall statistics (minor parsing issue, non-critical)
+- `GET /download/{type}` - Download CSV results
 
 **API Response Example (Monthly Averages):**
 ```json
 [
-    {
-        "month": "2024-11",
-        "avg_max": 25.63,
-        "avg_min": 15.40
-    },
-    {
-        "month": "2024-12",
-        "avg_max": 26.52,
-        "avg_min": 15.95
-    }
+  {
+    "month": "2024-11",
+    "avg_max": 25.63,
+    "avg_min": 15.40
+  },
+  {
+    "month": "2024-12",
+    "avg_max": 26.52,
+    "avg_min": 15.95
+  }
 ]
 ```
 
-### 4. Infrastructure Setup ✅
+### 4. Infrastructure Setup 
 
 **Local Development:**
 - Python 3.14 virtual environment
@@ -125,51 +125,51 @@ Implemented three MapReduce-style analyses:
 
 **Warming Trend Detected:**
 1. **Annual Temperature Increase:** +1.8°C in average maximum temperature
-   - 2022: 25.3°C average max
-   - 2024: 27.1°C average max
+  - 2022: 25.3°C average max
+  - 2024: 27.1°C average max
 
 2. **Seasonal Patterns:**
-   - Warmest period: March-April (27-29°C)
-   - Coolest period: June-July (24-25°C)
+  - Warmest period: March-April (27-29°C)
+  - Coolest period: June-July (24-25°C)
 
 3. **Extreme Events:**
-   - Very hot days (>30°C): 23 occurrences (2.1%)
-   - Very cool days (<12°C): 6 occurrences (0.5%)
+  - Very hot days (>30°C): 23 occurrences (2.1%)
+  - Very cool days (<12°C): 6 occurrences (0.5%)
 
 ### Precipitation Patterns
 
 **Key Observations:**
 1. **Inverse Temperature-Precipitation Relationship**
-   - Negative correlation: -0.15 to -0.52
-   - Warmer months consistently showed less rainfall
+  - Negative correlation: -0.15 to -0.52
+  - Warmer months consistently showed less rainfall
 
 2. **Rainfall Distribution:**
-   - Wettest month: June 2022 (347.9mm)
-   - Driest months: January-February (90-110mm)
-   - Average monthly precipitation: 159.8mm
+  - Wettest month: June 2022 (347.9mm)
+  - Driest months: January-February (90-110mm)
+  - Average monthly precipitation: 159.8mm
 
 3. **Rainy Day Frequency:**
-   - Average rainy days per month: 27-28 days
-   - Most consistent rainfall: Mid-year (May-June)
+  - Average rainy days per month: 27-28 days
+  - Most consistent rainfall: Mid-year (May-June)
 
 ### Climate Change Implications
 
 Based on this analysis of Medellín's weather (2022-2024):
 
 1. **Warning Signs:**
-   - ✗ Temperature increase of 1.8°C in just 3 years
-   - ✗ Strengthening inverse correlation between temperature and precipitation
-   - ✗ Potential for increased drought risk during warm periods
+  - Temperature increase of 1.8°C in just 3 years
+  - Strengthening inverse correlation between temperature and precipitation
+  - Potential for increased drought risk during warm periods
 
 2. **Positive Indicators:**
-   - ✓ Relatively few extreme temperature events
-   - ✓ Consistent rainfall frequency maintained
-   - ✓ Temperature range remains within habitable limits
+  - Relatively few extreme temperature events
+  - Consistent rainfall frequency maintained
+  - Temperature range remains within habitable limits
 
 3. **Recommendations:**
-   - Monitor continuation of warming trend
-   - Prepare water management strategies for potential dry periods
-   - Continue long-term data collection for trend validation
+  - Monitor continuation of warming trend
+  - Prepare water management strategies for potential dry periods
+  - Continue long-term data collection for trend validation
 
 ---
 
@@ -246,18 +246,18 @@ cat output/temp_precip_results.csv
 
 ```
 Open-Meteo API
-    ↓ (download_data.py)
+  ↓ (download_data.py)
 Raw CSV Data (1,096 records)
-    ↓ (process_data_simple.py)
+  ↓ (process_data_simple.py)
 MapReduce Processing
-    ├→ Monthly Averages
-    ├→ Extreme Detection
-    └→ Correlation Analysis
-    ↓
+  ├→ Monthly Averages
+  ├→ Extreme Detection
+  └→ Correlation Analysis
+  ↓
 Result CSV Files
-    ↓ (FastAPI)
+  ↓ (FastAPI)
 REST API Endpoints
-    ↓
+  ↓
 Web UI / API Consumers
 ```
 
@@ -279,17 +279,17 @@ Web UI / API Consumers
 
 ---
 
-## Success Criteria Met ✅
+## Success Criteria Met 
 
 | Criterion | Status | Evidence |
 |-----------|--------|----------|
-| Data successfully acquired | ✅ | 1,096 records from Open-Meteo API |
-| MapReduce-style processing | ✅ | 3 analysis jobs completed |
-| Results exported to CSV | ✅ | 3 result files generated |
-| Functional API serving results | ✅ | 8+ endpoints operational |
-| Complete GitHub repository | ✅ | All code, data, and docs |
-| Clear execution instructions | ✅ | This document + README |
-| Meaningful climate insights | ✅ | Warming trend + patterns identified |
+| Data successfully acquired | | 1,096 records from Open-Meteo API |
+| MapReduce-style processing | | 3 analysis jobs completed |
+| Results exported to CSV | | 3 result files generated |
+| Functional API serving results | | 8+ endpoints operational |
+| Complete GitHub repository | | All code, data, and docs |
+| Clear execution instructions | | This document + README |
+| Meaningful climate insights | | Warming trend + patterns identified |
 
 ---
 
@@ -304,24 +304,24 @@ Web UI / API Consumers
 
 ### Potential Enhancements
 1. **Extend Analysis:**
-   - Add more years of historical data
-   - Include humidity and wind speed data
-   - Seasonal decomposition analysis
+  - Add more years of historical data
+  - Include humidity and wind speed data
+  - Seasonal decomposition analysis
 
 2. **Visualization:**
-   - Interactive charts (Plotly/Altair)
-   - Temperature heatmaps
-   - Trend line graphs
+  - Interactive charts (Plotly/Altair)
+  - Temperature heatmaps
+  - Trend line graphs
 
 3. **Advanced Analytics:**
-   - Predictive modeling (ARIMA, Prophet)
-   - Climate change projection
-   - Anomaly detection
+  - Predictive modeling (ARIMA, Prophet)
+  - Climate change projection
+  - Anomaly detection
 
 4. **Scalability:**
-   - Process multiple cities
-   - Compare regional patterns
-   - Real-time data updates
+  - Process multiple cities
+  - Compare regional patterns
+  - Real-time data updates
 
 ---
 
@@ -330,10 +330,10 @@ Web UI / API Consumers
 The Weatheria Climate Observatory successfully demonstrates a complete end-to-end MapReduce-based climate analysis pipeline. The system processed 3 years of real weather data from Medellín, Colombia, revealing a concerning **1.8°C warming trend** and an inverse relationship between temperature and precipitation.
 
 All components are operational:
-- ✅ Data acquisition system
-- ✅ MapReduce processing pipeline
-- ✅ REST API serving results
-- ✅ Comprehensive documentation
+- Data acquisition system
+- MapReduce processing pipeline
+- REST API serving results
+- Comprehensive documentation
 
 The project is **production-ready** for AWS EMR deployment and serves as a robust foundation for climate change monitoring in Medellín.
 
@@ -342,4 +342,4 @@ The project is **production-ready** for AWS EMR deployment and serves as a robus
 **Project Repository:** https://github.com/Youngermaster/Weatheria
 **API Documentation:** http://localhost:8000/docs
 **Data Source:** Open-Meteo Archive API
-**Inspiration:** One Piece's Weatheria - Where Science Meets the Clouds ☁️🌡️
+**Inspiration:** One Piece's Weatheria - Where Science Meets the Clouds ☁🌡

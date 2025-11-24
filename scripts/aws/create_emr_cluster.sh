@@ -37,7 +37,7 @@ fi
 
 # Check if S3 bucket exists
 if ! aws s3 ls "s3://$BUCKET_NAME" &> /dev/null; then
-    echo "❌ S3 bucket not found: $BUCKET_NAME"
+    echo "ERROR: S3 bucket not found: $BUCKET_NAME"
     echo "   Run: ./scripts/aws/setup_s3.sh"
     exit 1
 fi
@@ -61,13 +61,13 @@ CLUSTER_ID=$(aws emr create-cluster \
     --query 'ClusterId' \
     --output text)
 
-echo "✓ Cluster created!"
+echo "Cluster created!"
 echo ""
 echo "Cluster ID: $CLUSTER_ID"
 
 # Save cluster ID
 echo "$CLUSTER_ID" > .emr_cluster_id
-echo "✓ Cluster ID saved to .emr_cluster_id"
+echo "Cluster ID saved to .emr_cluster_id"
 
 # Wait for cluster to be ready
 echo ""
@@ -83,7 +83,7 @@ aws emr describe-cluster --cluster-id "$CLUSTER_ID" \
 
 echo ""
 echo "============================================================"
-echo "✅ EMR cluster is running!"
+echo "SUCCESS: EMR cluster is running!"
 echo "============================================================"
 echo ""
 echo "Cluster ID: $CLUSTER_ID"
@@ -96,4 +96,4 @@ echo "  1. Submit jobs: ./scripts/aws/submit_emr_jobs.sh"
 echo "  2. Monitor jobs: aws emr list-steps --cluster-id $CLUSTER_ID"
 echo "  3. When done, terminate: ./scripts/aws/terminate_emr_cluster.sh"
 echo ""
-echo "⚠️  IMPORTANT: Remember to terminate the cluster to avoid charges!"
+echo "WARNING: IMPORTANT: Remember to terminate the cluster to avoid charges!"

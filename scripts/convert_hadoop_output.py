@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Convert Hadoop MapReduce output (TSV) to CSV format for API
 """
@@ -31,7 +31,7 @@ def convert_monthly_avg():
                 if len(temps) >= 2:
                     writer.writerow([month, temps[0], temps[1]])
 
-    print(f"✓ Converted monthly averages: {output_file}")
+    print(f" Converted monthly averages: {output_file}")
 
 
 def convert_extreme_temps():
@@ -56,7 +56,7 @@ def convert_extreme_temps():
                 if len(stats) >= 2:
                     writer.writerow([category, stats[0], stats[1]])
 
-    print(f"✓ Converted extreme temperatures: {output_file}")
+    print(f" Converted extreme temperatures: {output_file}")
 
 
 def convert_temp_precip():
@@ -81,7 +81,7 @@ def convert_temp_precip():
                 if len(stats) >= 5:
                     writer.writerow([month, stats[0], stats[1], stats[2], stats[3], stats[4]])
 
-    print(f"✓ Converted temp-precipitation: {output_file}")
+    print(f" Converted temp-precipitation: {output_file}")
 
 
 if __name__ == '__main__':
@@ -91,4 +91,4 @@ if __name__ == '__main__':
     convert_extreme_temps()
     convert_temp_precip()
 
-    print("\n✓ All conversions completed successfully!")
+    print("\n All conversions completed successfully!")

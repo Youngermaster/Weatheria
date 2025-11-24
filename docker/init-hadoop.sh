@@ -112,7 +112,7 @@ $HADOOP_HOME/sbin/start-yarn.sh
 # Wait for services to be ready
 sleep 10
 
-echo "✓ Hadoop services started successfully!"
+echo "Hadoop services started successfully!"
 echo ""
 echo "Web UIs available at:"
 echo "  - HDFS NameNode: http://localhost:50070"
@@ -125,7 +125,7 @@ $HADOOP_HOME/bin/hdfs dfs -mkdir -p /user/hadoop/weatheria/input
 $HADOOP_HOME/bin/hdfs dfs -mkdir -p /user/hadoop/weatheria/output
 $HADOOP_HOME/bin/hdfs dfs -chmod -R 777 /user/hadoop/weatheria
 
-echo "✓ HDFS directories created!"
+echo "HDFS directories created!"
 echo ""
 $HADOOP_HOME/bin/hdfs dfs -ls /user/hadoop/weatheria/
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Download weather data from Open-Meteo API for Medellín, Colombia
 Usage: python scripts/download_data.py
@@ -60,11 +60,11 @@ def download_medellin_weather(
     print("=" * 60)
     print("Weatheria Climate Observatory - Data Download")
     print("=" * 60)
-    print(f"📍 Location: Medellín, Colombia ({latitude}, {longitude})")
-    print(f"📅 Period: {start_date} to {end_date}")
-    print(f"🌐 Source: Open-Meteo Archive API")
+    print(f" Location: Medellín, Colombia ({latitude}, {longitude})")
+    print(f" Period: {start_date} to {end_date}")
+    print(f" Source: Open-Meteo Archive API")
     print("=" * 60)
-    print("\n⏳ Downloading data...")
+    print("\n Downloading data...")
     
     try:
         response = requests.get(url, params=params, timeout=30)
@@ -86,25 +86,25 @@ def download_medellin_weather(
         # Save to CSV
         df.to_csv(output_file, index=False)
         
-        print(f"✅ Data saved to: {output_file}")
-        print(f"📊 Total records: {len(df)}")
-        print(f"📏 Date range: {df['date'].min()} to {df['date'].max()}")
-        print(f"🌡️  Temperature range: {df['temp_min'].min():.1f}°C to {df['temp_max'].max():.1f}°C")
-        print(f"💧 Total precipitation: {df['precipitation'].sum():.1f} mm")
+        print(f" Data saved to: {output_file}")
+        print(f" Total records: {len(df)}")
+        print(f" Date range: {df['date'].min()} to {df['date'].max()}")
+        print(f"  Temperature range: {df['temp_min'].min():.1f}°C to {df['temp_max'].max():.1f}°C")
+        print(f" Total precipitation: {df['precipitation'].sum():.1f} mm")
         
-        print("\n📋 Sample data (first 5 rows):")
+        print("\n Sample data (first 5 rows):")
         print(df.head().to_string(index=False))
         
-        print("\n📊 Basic statistics:")
+        print("\n Basic statistics:")
         print(df.describe().to_string())
         
         return df
         
     except requests.exceptions.RequestException as e:
-        print(f"❌ Error downloading data: {e}")
+        print(f" Error downloading data: {e}")
         sys.exit(1)
     except (KeyError, ValueError) as e:
-        print(f"❌ Error parsing data: {e}")
+        print(f" Error parsing data: {e}")
         sys.exit(1)
 
 
@@ -120,9 +120,9 @@ def main():
     )
     
     print("\n" + "=" * 60)
-    print("✨ Download completed successfully!")
+    print(" Download completed successfully!")
     print("=" * 60)
-    print(f"\n💡 Next steps:")
+    print(f"\n Next steps:")
     print(f"   1. Review the data: cat {output_path}")
     print(f"   2. Load to HDFS: ./scripts/load_to_hdfs.sh")
     print(f"   3. Run MapReduce jobs: ./scripts/run_mapreduce.sh")

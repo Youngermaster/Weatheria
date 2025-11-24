@@ -27,7 +27,7 @@ download_result() {
     local local_file=$2
     local job_name=$3
     
-    echo "📥 Downloading: $job_name"
+    echo "Downloading: $job_name"
     
     # Download all part files and combine
     aws s3 cp "s3://$BUCKET_NAME/$s3_path/" - \
@@ -37,11 +37,11 @@ download_result() {
         > "$local_file" 2>/dev/null || true
     
     if [ -s "$local_file" ]; then
-        echo "   ✓ Saved to: $local_file"
-        echo "   📋 Sample (first 5 lines):"
+        echo "   Saved to: $local_file"
+        echo "   Sample (first 5 lines):"
         head -n 5 "$local_file" | sed 's/^/      /'
     else
-        echo "   ⚠️  No results found"
+        echo "   WARNING: No results found"
     fi
     echo ""
 }
@@ -68,9 +68,9 @@ download_result \
     "Temperature-Precipitation Correlation"
 
 echo "============================================================"
-echo "✅ Results downloaded!"
+echo "SUCCESS: Results downloaded!"
 echo "============================================================"
 echo ""
-echo "📂 Results location: ./output/"
+echo "Results location: ./output/"
 echo ""
 echo "Files are ready for API consumption!"

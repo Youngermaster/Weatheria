@@ -15,7 +15,7 @@ echo "============================================================"
 echo "Weatheria Climate Observatory - AWS Cleanup"
 echo "============================================================"
 echo ""
-echo "⚠️  WARNING: This will delete all AWS resources!"
+echo "WARNING: This will delete all AWS resources!"
 echo ""
 echo "This includes:"
 echo "  - EMR cluster (if running)"
@@ -36,7 +36,7 @@ if [ -f .emr_cluster_id ]; then
     CLUSTER_ID=$(cat .emr_cluster_id)
     aws emr terminate-clusters --cluster-ids "$CLUSTER_ID" 2>/dev/null || true
     rm -f .emr_cluster_id
-    echo "✓ Cluster terminated"
+    echo "Cluster terminated"
 fi
 
 # Empty and delete S3 bucket
@@ -47,12 +47,12 @@ if aws s3 ls "s3://$BUCKET_NAME" &> /dev/null; then
     aws s3 rm "s3://$BUCKET_NAME" --recursive
     # Delete bucket
     aws s3 rb "s3://$BUCKET_NAME"
-    echo "✓ Bucket deleted"
+    echo "Bucket deleted"
 else
-    echo "✓ Bucket doesn't exist"
+    echo "Bucket doesn't exist"
 fi
 
 echo ""
 echo "============================================================"
-echo "✅ AWS cleanup complete!"
+echo "SUCCESS: AWS cleanup complete!"
 echo "============================================================"

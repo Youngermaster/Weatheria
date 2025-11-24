@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Simple MapReduce-style processing of weather data
 Generates the same results as MapReduce jobs without requiring Hadoop
@@ -25,7 +25,7 @@ def process_monthly_avg(input_file, output_file):
         for month, row in results.iterrows():
             f.write(f"{month}\t{row['temp_max']}\t{row['temp_min']}\n")
 
-    print(f"✓ Monthly averages saved to {output_file}")
+    print(f" Monthly averages saved to {output_file}")
     return results
 
 def process_extreme_temps(input_file, output_file):
@@ -57,7 +57,7 @@ def process_extreme_temps(input_file, output_file):
             avg_temp = round(data['total_temp'] / data['count'], 2)
             f.write(f"{cat}\t{data['count']}\t{avg_temp}\n")
 
-    print(f"✓ Extreme temperatures saved to {output_file}")
+    print(f" Extreme temperatures saved to {output_file}")
     return categories
 
 def process_temp_precipitation(input_file, output_file):
@@ -97,7 +97,7 @@ def process_temp_precipitation(input_file, output_file):
 
             f.write(f"{month}\t{correlation}\t{avg_temp}\t{avg_precip}\t{rainy_days}\t{total_precip}\n")
 
-    print(f"✓ Temperature-precipitation correlation saved to {output_file}")
+    print(f" Temperature-precipitation correlation saved to {output_file}")
 
 def main():
     """Process all MapReduce jobs"""
@@ -122,7 +122,7 @@ def main():
 
     print("")
     print("="*60)
-    print("✅ All processing complete!")
+    print(" All processing complete!")
     print("="*60)
     print("")
     print("Results location: ./output/")

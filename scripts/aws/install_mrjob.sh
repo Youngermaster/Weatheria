@@ -8,7 +8,7 @@ set -e
 if [ -f .emr_cluster_id ]; then
     CLUSTER_ID=$(cat .emr_cluster_id)
 else
-    echo "❌ No cluster ID found."
+    echo "ERROR: No cluster ID found."
     exit 1
 fi
 
@@ -29,7 +29,7 @@ Args=[sudo,pip3,install,mrjob] \
     --query 'StepIds[0]' \
     --output text)
 
-echo "✓ Installation step submitted: $STEP_ID"
+echo "Installation step submitted: $STEP_ID"
 echo ""
 echo "Wait for installation to complete:"
 echo "  aws emr describe-step --cluster-id $CLUSTER_ID --step-id $STEP_ID"

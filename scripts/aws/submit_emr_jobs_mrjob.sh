@@ -13,7 +13,7 @@ fi
 if [ -f .emr_cluster_id ]; then
     CLUSTER_ID=$(cat .emr_cluster_id)
 else
-    echo "❌ No cluster ID found. Create cluster first:"
+    echo "ERROR: No cluster ID found. Create cluster first:"
     echo "   ./scripts/aws/create_emr_cluster.sh"
     exit 1
 fi
@@ -37,13 +37,13 @@ elif command -v python &> /dev/null; then
     PYTHON_CMD="python"
     PIP_CMD="pip"
 else
-    echo "❌ Python not found!"
+    echo "ERROR: Python not found!"
     exit 1
 fi
 
 # Check if mrjob is installed locally
 if ! $PYTHON_CMD -c "import mrjob" 2>/dev/null; then
-    echo "⚠️  Installing mrjob locally..."
+    echo "Installing mrjob locally..."
     $PIP_CMD install mrjob boto3
 fi
 
@@ -54,7 +54,7 @@ run_mrjob() {
     local output_path=$3
     local description=$4
     
-    echo "🚀 Running: $description"
+    echo "Running: $description"
     echo "   Script: $script_file"
     echo "   Input: s3://$BUCKET_NAME/$input_path"
     echo "   Output: s3://$BUCKET_NAME/$output_path"
@@ -74,7 +74,7 @@ run_mrjob() {
         "s3://$BUCKET_NAME/$input_path"
     
     echo ""
-    echo "   ✓ Job completed!"
+    echo "   Job completed!"
     echo ""
 }
 
@@ -128,7 +128,7 @@ case $JOB_NAME in
         ;;
         
     *)
-        echo "❌ Unknown job: $JOB_NAME"
+        echo "ERROR: Unknown job: $JOB_NAME"
         echo ""
         echo "Available jobs:"
         echo "  monthly          - Monthly average temperature"
@@ -140,7 +140,7 @@ case $JOB_NAME in
 esac
 
 echo "============================================================"
-echo "✅ Jobs completed successfully!"
+echo "SUCCESS: Jobs completed successfully!"
 echo "============================================================"
 echo ""
 echo "Download results:"

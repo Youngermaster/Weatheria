@@ -23,6 +23,11 @@ class Settings(BaseSettings):
     # CORS
     cors_origins: list = ["*"]
     
+    # S3 Configuration
+    use_s3: bool = False
+    s3_bucket: str = "weatheria-climate-data"
+    aws_region: str = "us-east-1"
+    
     # File names
     monthly_avg_file: str = "monthly_avg_fixed.csv"
     extreme_temps_file: str = "extreme_temps_fixed.csv"

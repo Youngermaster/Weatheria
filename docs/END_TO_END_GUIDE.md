@@ -86,14 +86,14 @@ python3 scripts/process_data_simple.py
 
 **Expected Output:**
 ```
-✓ Processing monthly averages...
-  Saved to output/monthly_avg_results.csv (36 records)
+ Processing monthly averages...
+ Saved to output/monthly_avg_results.csv (36 records)
 
-✓ Processing extreme temperatures...
-  Saved to output/extreme_temps_results.csv (4 categories)
+ Processing extreme temperatures...
+ Saved to output/extreme_temps_results.csv (4 categories)
 
-✓ Processing temperature-precipitation correlation...
-  Saved to output/temp_precip_results.csv (36 records)
+ Processing temperature-precipitation correlation...
+ Saved to output/temp_precip_results.csv (36 records)
 
 Summary:
 - Monthly data: 36 months analyzed
@@ -119,10 +119,10 @@ python3 src/api/main.py
 
 **Expected Output:**
 ```
-INFO:     Started server process [XXXXX]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:   Started server process [XXXXX]
+INFO:   Waiting for application startup.
+INFO:   Application startup complete.
+INFO:   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
 ```
 
 **Verify API is running:**
@@ -151,10 +151,10 @@ npm run dev
 
 **Expected Output:**
 ```
-VITE v7.2.4  ready in 180 ms
+VITE v7.2.4 ready in 180 ms
 
-➜  Local:   http://localhost:5173/
-➜  Network: use --host to expose
+ Local:  http://localhost:5173/
+ Network: use --host to expose
 ```
 
 ---
@@ -166,49 +166,49 @@ Open your browser and navigate to: **http://localhost:5173/**
 ### Available Pages:
 
 1. **Dashboard** (`/dashboard`)
-   - Comprehensive climate overview
-   - 4 interactive charts:
-     - Temperature trends (line chart)
-     - Temperature distribution (pie chart)
-     - Monthly precipitation (bar chart)
-     - Temp vs precipitation correlation (dual-axis line chart)
-   - Key statistics cards
-   - Climate insights
+  - Comprehensive climate overview
+  - 4 interactive charts:
+   - Temperature trends (line chart)
+   - Temperature distribution (pie chart)
+   - Monthly precipitation (bar chart)
+   - Temp vs precipitation correlation (dual-axis line chart)
+  - Key statistics cards
+  - Climate insights
 
 2. **Monthly Analysis** (`/monthly`)
-   - Detailed temperature trends over 36 months
-   - Area chart showing max/min temperatures
-   - Hottest and coolest month summaries
-   - Complete data table
-   - CSV download functionality
+  - Detailed temperature trends over 36 months
+  - Area chart showing max/min temperatures
+  - Hottest and coolest month summaries
+  - Complete data table
+  - CSV download functionality
 
 3. **Extreme Temperatures** (`/extreme`)
-   - Temperature classification analysis
-   - Category breakdown:
-     - Very Hot (>30°C)
-     - Normal (15-30°C)
-     - Cool (<15°C)
-     - Very Cool (<12°C)
-   - Pie and bar charts
-   - Detailed category insights
-   - CSV download
+  - Temperature classification analysis
+  - Category breakdown:
+   - Very Hot (>30°C)
+   - Normal (15-30°C)
+   - Cool (<15°C)
+   - Very Cool (<12°C)
+  - Pie and bar charts
+  - Detailed category insights
+  - CSV download
 
 4. **Precipitation Analysis** (`/precipitation`)
-   - Temperature-precipitation correlation
-   - Combined bar + line chart
-   - Scatter plot showing relationship
-   - Monthly correlation table
-   - Wettest and driest month stats
-   - Climate insights
-   - CSV download
+  - Temperature-precipitation correlation
+  - Combined bar + line chart
+  - Scatter plot showing relationship
+  - Monthly correlation table
+  - Wettest and driest month stats
+  - Climate insights
+  - CSV download
 
 5. **About** (`/about`)
-   - Project overview
-   - Technology stack
-   - MapReduce job descriptions
-   - Data source information
-   - Key climate findings
-   - Links to resources
+  - Project overview
+  - Technology stack
+  - MapReduce job descriptions
+  - Data source information
+  - Key climate findings
+  - Links to resources
 
 ---
 
@@ -251,14 +251,14 @@ curl -O http://localhost:8000/download/temp-precipitation
 1. **Open browser console** (F12)
 2. Navigate between pages
 3. Check Network tab for API calls:
-   - `/monthly-avg` returns 36 records
-   - `/extreme-temps` returns 4 categories
-   - `/temp-precipitation` returns 36 records
+  - `/monthly-avg` returns 36 records
+  - `/extreme-temps` returns 4 categories
+  - `/temp-precipitation` returns 36 records
 
 4. **Verify charts render correctly:**
-   - Dashboard shows 4 charts with data
-   - All pages load without errors
-   - Download buttons work
+  - Dashboard shows 4 charts with data
+  - All pages load without errors
+  - Download buttons work
 
 ---
 
@@ -354,44 +354,44 @@ pip install --force-reinstall pandas numpy requests fastapi uvicorn
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│              WEATHERIA CLIMATE OBSERVATORY               │
+│       WEATHERIA CLIMATE OBSERVATORY        │
 └─────────────────────────────────────────────────────────┘
 
 ┌─────────────────┐
-│  Open-Meteo API │  (Data Source)
+│ Open-Meteo API │ (Data Source)
 └────────┬────────┘
-         │ download_data.py
-         ▼
+     │ download_data.py
+     ▼
 ┌─────────────────────────────────────────────────────────┐
-│  RAW DATA (CSV)                                          │
-│  data/raw/medellin_weather_2022-2024.csv                │
-│  1,096 daily records                                     │
+│ RAW DATA (CSV)                     │
+│ data/raw/medellin_weather_2022-2024.csv        │
+│ 1,096 daily records                   │
 └────────┬────────────────────────────────────────────────┘
-         │ process_data_simple.py
-         ▼
+     │ process_data_simple.py
+     ▼
 ┌─────────────────────────────────────────────────────────┐
-│  PROCESSED RESULTS (CSV)                                 │
-│  - output/monthly_avg_results.csv                       │
-│  - output/extreme_temps_results.csv                     │
-│  - output/temp_precip_results.csv                       │
+│ PROCESSED RESULTS (CSV)                 │
+│ - output/monthly_avg_results.csv            │
+│ - output/extreme_temps_results.csv           │
+│ - output/temp_precip_results.csv            │
 └────────┬────────────────────────────────────────────────┘
-         │
-         ▼
+     │
+     ▼
 ┌─────────────────────────────────────────────────────────┐
-│  FASTAPI SERVER (Backend)                                │
-│  http://localhost:8000                                   │
-│  - REST API endpoints                                    │
-│  - CSV download functionality                            │
-│  - Swagger/ReDoc documentation                           │
+│ FASTAPI SERVER (Backend)                │
+│ http://localhost:8000                  │
+│ - REST API endpoints                  │
+│ - CSV download functionality              │
+│ - Swagger/ReDoc documentation              │
 └────────┬────────────────────────────────────────────────┘
-         │ HTTP JSON
-         ▼
+     │ HTTP JSON
+     ▼
 ┌─────────────────────────────────────────────────────────┐
-│  REACT FRONTEND (UI)                                     │
-│  http://localhost:5173                                   │
-│  - Interactive dashboards                                │
-│  - Data visualizations (Recharts)                        │
-│  - Download functionality                                │
+│ REACT FRONTEND (UI)                   │
+│ http://localhost:5173                  │
+│ - Interactive dashboards                │
+│ - Data visualizations (Recharts)            │
+│ - Download functionality                │
 └─────────────────────────────────────────────────────────┘
 ```
 
@@ -488,44 +488,44 @@ open http://localhost:5173
 ```
 Weatheria/
 ├── data/
-│   └── raw/
-│       └── medellin_weather_2022-2024.csv  (1,096 records)
+│  └── raw/
+│    └── medellin_weather_2022-2024.csv (1,096 records)
 ├── output/
-│   ├── monthly_avg_results.csv             (36 records)
-│   ├── extreme_temps_results.csv           (4 categories)
-│   └── temp_precip_results.csv             (36 records)
+│  ├── monthly_avg_results.csv       (36 records)
+│  ├── extreme_temps_results.csv      (4 categories)
+│  └── temp_precip_results.csv       (36 records)
 ├── scripts/
-│   ├── download_data.py                    (Data acquisition)
-│   └── process_data_simple.py              (MapReduce-style processing)
+│  ├── download_data.py          (Data acquisition)
+│  └── process_data_simple.py       (MapReduce-style processing)
 ├── src/
-│   └── api/
-│       └── main.py                         (FastAPI server)
+│  └── api/
+│    └── main.py             (FastAPI server)
 ├── weatheria-frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── layout/
-│   │   │   │   └── DashboardLayout.tsx
-│   │   │   ├── ui/                         (ShadcnUI components)
-│   │   │   └── StatCard.tsx
-│   │   ├── pages/
-│   │   │   ├── Dashboard.tsx
-│   │   │   ├── MonthlyAnalysis.tsx
-│   │   │   ├── ExtremeAnalysis.tsx
-│   │   │   ├── PrecipitationAnalysis.tsx
-│   │   │   └── About.tsx
-│   │   ├── services/
-│   │   │   └── api.ts                      (Axios API client)
-│   │   ├── types/
-│   │   │   └── index.ts                    (TypeScript types)
-│   │   ├── App.tsx                         (Router setup)
-│   │   └── main.tsx                        (Entry point)
-│   ├── package.json
-│   └── .env                                (VITE_API_URL)
+│  ├── src/
+│  │  ├── components/
+│  │  │  ├── layout/
+│  │  │  │  └── DashboardLayout.tsx
+│  │  │  ├── ui/             (ShadcnUI components)
+│  │  │  └── StatCard.tsx
+│  │  ├── pages/
+│  │  │  ├── Dashboard.tsx
+│  │  │  ├── MonthlyAnalysis.tsx
+│  │  │  ├── ExtremeAnalysis.tsx
+│  │  │  ├── PrecipitationAnalysis.tsx
+│  │  │  └── About.tsx
+│  │  ├── services/
+│  │  │  └── api.ts           (Axios API client)
+│  │  ├── types/
+│  │  │  └── index.ts          (TypeScript types)
+│  │  ├── App.tsx             (Router setup)
+│  │  └── main.tsx            (Entry point)
+│  ├── package.json
+│  └── .env                (VITE_API_URL)
 ├── requirements.txt
-├── CLAUDE.md                                (Project requirements)
-├── GETTING_STARTED.md                       (Setup instructions)
-├── EXECUTION_SUMMARY.md                     (Results documentation)
-└── END_TO_END_GUIDE.md                      (This file)
+├── CLAUDE.md                (Project requirements)
+├── GETTING_STARTED.md            (Setup instructions)
+├── EXECUTION_SUMMARY.md           (Results documentation)
+└── END_TO_END_GUIDE.md           (This file)
 ```
 
 ---
@@ -542,8 +542,8 @@ Weatheria/
 
 **Last Updated:** November 22, 2025
 **Version:** 1.0.0
-**Status:** ✅ Fully Functional
+**Status:** Fully Functional
 
 ---
 
-*Inspired by Weatheria from One Piece - Where Science Meets the Clouds* ☁️🌡️
+*Inspired by Weatheria from One Piece - Where Science Meets the Clouds*

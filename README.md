@@ -1,4 +1,4 @@
-# Weatheria - Climate Observatory 🌡️
+# Weatheria - Climate Observatory 
 
 ![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
 ![Hadoop](https://img.shields.io/badge/hadoop-3.3.6-yellow.svg)
@@ -29,11 +29,11 @@ A distributed data engineering platform for climate analysis using MapReduce on 
 Weatheria is a complete ETL (Extract, Transform, Load) pipeline for weather data analysis, built for distributed processing at scale. The system analyzes 3 years of daily weather data (2022-2024) from Medellin, Colombia using MapReduce on AWS EMR, exposing results through a REST API and visualizing them in an interactive web dashboard.
 
 **Key Features:**
-- 📊 **Data Collection**: 1,095 daily records from Open-Meteo Historical Weather API
-- ⚡ **Distributed Processing**: MapReduce jobs on AWS EMR cluster (3 nodes)
-- 🚀 **REST API**: FastAPI backend with automatic documentation
-- 📈 **Interactive Visualization**: React + TypeScript frontend with real-time charts
-- ☁️ **Cloud-Native**: Fully deployed on AWS (EMR, S3)
+- **Data Collection**: 1,095 daily records from Open-Meteo Historical Weather API
+- **Distributed Processing**: MapReduce jobs on AWS EMR cluster (3 nodes)
+- **REST API**: FastAPI backend with automatic documentation
+- **Interactive Visualization**: React + TypeScript frontend with real-time charts
+- **Cloud-Native**: Fully deployed on AWS (EMR, S3)
 
 ## Architecture
 
@@ -41,38 +41,38 @@ The system consists of the following components:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      Data Source                             │
-│                  Open-Meteo Weather API                      │
+│           Data Source               │
+│         Open-Meteo Weather API           │
 └────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
+           │
+           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                   AWS S3 Storage                             │
-│            weatheria-climate-data bucket                     │
-│         /input/ | /output/ | /scripts/ | /logs/             │
+│          AWS S3 Storage               │
+│      weatheria-climate-data bucket           │
+│     /input/ | /output/ | /scripts/ | /logs/       │
 └────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
+           │
+           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                 AWS EMR Cluster (EMR 6.10.0)                 │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │   NameNode   │  │  DataNode 1  │  │  DataNode 2  │      │
-│  │ (m5.xlarge)  │  │ (m5.xlarge)  │  │ (m5.xlarge)  │      │
-│  └──────────────┘  └──────────────┘  └──────────────┘      │
-│                                                               │
-│  MapReduce Jobs: Monthly Avg | Extreme Temps | Correlation  │
+│         AWS EMR Cluster (EMR 6.10.0)         │
+│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐   │
+│ │  NameNode  │ │ DataNode 1 │ │ DataNode 2 │   │
+│ │ (m5.xlarge) │ │ (m5.xlarge) │ │ (m5.xlarge) │   │
+│ └──────────────┘ └──────────────┘ └──────────────┘   │
+│                                │
+│ MapReduce Jobs: Monthly Avg | Extreme Temps | Correlation │
 └────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
+           │
+           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│              FastAPI Backend (localhost:8000)                │
-│  /monthly-avg | /extreme-temps | /temp-precipitation        │
+│       FastAPI Backend (localhost:8000)        │
+│ /monthly-avg | /extreme-temps | /temp-precipitation    │
 └────────────────────┬────────────────────────────────────────┘
-                     │
-                     ▼
+           │
+           ▼
 ┌─────────────────────────────────────────────────────────────┐
-│           React Frontend (localhost:5173)                    │
-│  Dashboard | Monthly Analysis | Extreme Temps | Correlation │
+│      React Frontend (localhost:5173)          │
+│ Dashboard | Monthly Analysis | Extreme Temps | Correlation │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -114,7 +114,7 @@ cd src/api
 python main.py
 ```
 
-The API will be available at `http://localhost:8000`  
+The API will be available at `http://localhost:8000` 
 Interactive documentation: `http://localhost:8000/docs`
 
 ### 3. Frontend Setup
@@ -167,59 +167,59 @@ bash scripts/aws/terminate_emr_cluster.sh
 ```
 weatheria/
 ├── data/
-│   ├── raw/                          # Raw weather data from API
-│   │   └── medellin_weather_2022-2024.csv
-│   └── processed/                    # Processed MapReduce outputs
+│  ├── raw/             # Raw weather data from API
+│  │  └── medellin_weather_2022-2024.csv
+│  └── processed/          # Processed MapReduce outputs
 ├── src/
-│   ├── mapreduce/                   # MapReduce job implementations
-│   │   ├── monthly_avg_temp.py      # Monthly temperature analysis
-│   │   ├── extreme_temps.py         # Temperature classification
-│   │   └── temp_precipitation.py    # Correlation analysis
-│   └── api/                         # FastAPI backend
-│       ├── main.py                  # Application entry point
-│       ├── config.py                # Configuration settings
-│       ├── models/
-│       │   └── schemas.py           # Pydantic data models
-│       └── routers/
-│           ├── monthly.py           # Monthly averages endpoint
-│           ├── extremes.py          # Extreme temperatures endpoint
-│           └── correlation.py       # Correlation endpoint
-├── weatheria-frontend/              # React TypeScript application
-│   ├── src/
-│   │   ├── services/
-│   │   │   └── api.ts              # Backend API client (Axios)
-│   │   ├── pages/
-│   │   │   ├── Dashboard.tsx       # Main dashboard with charts
-│   │   │   ├── MonthlyAnalysis.tsx # Monthly temperature analysis
-│   │   │   ├── ExtremeAnalysis.tsx # Temperature distribution
-│   │   │   ├── PrecipitationAnalysis.tsx
-│   │   │   └── About.tsx
-│   │   ├── components/
-│   │   │   ├── DashboardLayout.tsx
-│   │   │   ├── StatCard.tsx
-│   │   │   └── ui/                 # shadcn/ui components
-│   │   ├── types/
-│   │   │   └── index.ts            # TypeScript interfaces
-│   │   └── lib/
-│   │       └── utils.ts            # Utility functions
-│   ├── package.json
-│   ├── vite.config.ts
-│   └── tailwind.config.js
+│  ├── mapreduce/          # MapReduce job implementations
+│  │  ├── monthly_avg_temp.py   # Monthly temperature analysis
+│  │  ├── extreme_temps.py     # Temperature classification
+│  │  └── temp_precipitation.py  # Correlation analysis
+│  └── api/             # FastAPI backend
+│    ├── main.py         # Application entry point
+│    ├── config.py        # Configuration settings
+│    ├── models/
+│    │  └── schemas.py      # Pydantic data models
+│    └── routers/
+│      ├── monthly.py      # Monthly averages endpoint
+│      ├── extremes.py     # Extreme temperatures endpoint
+│      └── correlation.py    # Correlation endpoint
+├── weatheria-frontend/       # React TypeScript application
+│  ├── src/
+│  │  ├── services/
+│  │  │  └── api.ts       # Backend API client (Axios)
+│  │  ├── pages/
+│  │  │  ├── Dashboard.tsx    # Main dashboard with charts
+│  │  │  ├── MonthlyAnalysis.tsx # Monthly temperature analysis
+│  │  │  ├── ExtremeAnalysis.tsx # Temperature distribution
+│  │  │  ├── PrecipitationAnalysis.tsx
+│  │  │  └── About.tsx
+│  │  ├── components/
+│  │  │  ├── DashboardLayout.tsx
+│  │  │  ├── StatCard.tsx
+│  │  │  └── ui/         # shadcn/ui components
+│  │  ├── types/
+│  │  │  └── index.ts      # TypeScript interfaces
+│  │  └── lib/
+│  │    └── utils.ts      # Utility functions
+│  ├── package.json
+│  ├── vite.config.ts
+│  └── tailwind.config.js
 ├── scripts/
-│   ├── download_data.py             # Data collection from Open-Meteo API
-│   └── aws/                         # AWS deployment automation
-│       ├── setup_s3.sh
-│       ├── create_emr_cluster.sh
-│       ├── submit_emr_jobs_mrjob.sh
-│       ├── download_results.sh
-│       └── terminate_emr_cluster.sh
-├── output/                          # MapReduce results (CSV files)
-│   ├── monthly_avg_fixed.csv
-│   ├── extreme_temps_fixed.csv
-│   └── temp_precip_fixed.csv
-├── requirements.txt                 # Python dependencies
-├── DEPLOYMENT.md                    # Detailed AWS EMR deployment guide
-└── README.md                        # This file
+│  ├── download_data.py       # Data collection from Open-Meteo API
+│  └── aws/             # AWS deployment automation
+│    ├── setup_s3.sh
+│    ├── create_emr_cluster.sh
+│    ├── submit_emr_jobs_mrjob.sh
+│    ├── download_results.sh
+│    └── terminate_emr_cluster.sh
+├── output/             # MapReduce results (CSV files)
+│  ├── monthly_avg_fixed.csv
+│  ├── extreme_temps_fixed.csv
+│  └── temp_precip_fixed.csv
+├── requirements.txt         # Python dependencies
+├── DEPLOYMENT.md          # Detailed AWS EMR deployment guide
+└── README.md            # This file
 ```
 
 ## MapReduce Jobs
@@ -239,7 +239,7 @@ Calculates average maximum and minimum temperatures per month across 3 years.
 (year-month) → (avg_max_temp, avg_min_temp)
 ```
 
-**Input:** Daily weather records (1,095 days)  
+**Input:** Daily weather records (1,095 days) 
 **Output:** Monthly aggregates (36 months)
 
 ```csv
@@ -329,11 +329,11 @@ Returns monthly average temperatures (max and min) for 36 months.
 **Response:**
 ```json
 [
-  {
-    "month": "2022-01",
-    "avg_max_temp": 25.85,
-    "avg_min_temp": 14.30
-  }
+ {
+  "month": "2022-01",
+  "avg_max_temp": 25.85,
+  "avg_min_temp": 14.30
+ }
 ]
 ```
 
@@ -347,22 +347,22 @@ Returns count of days per temperature category.
 **Response:**
 ```json
 [
-  {
-    "category": "very_cool",
-    "count": 6
-  },
-  {
-    "category": "cool",
-    "count": 380
-  },
-  {
-    "category": "normal",
-    "count": 700
-  },
-  {
-    "category": "very_hot",
-    "count": 23
-  }
+ {
+  "category": "very_cool",
+  "count": 6
+ },
+ {
+  "category": "cool",
+  "count": 380
+ },
+ {
+  "category": "normal",
+  "count": 700
+ },
+ {
+  "category": "very_hot",
+  "count": 23
+ }
 ]
 ```
 
@@ -376,10 +376,10 @@ Returns monthly correlation between temperature and precipitation.
 **Response:**
 ```json
 [
-  {
-    "month": "2022-01",
-    "correlation": -0.31
-  }
+ {
+  "month": "2022-01",
+  "correlation": -0.31
+ }
 ]
 ```
 
@@ -467,10 +467,10 @@ The frontend uses Axios to communicate with the FastAPI backend:
 ```typescript
 // src/services/api.ts
 const weatheriaApi = {
-  getMonthlyAverages: () => axios.get('/monthly-avg'),
-  getExtremeTemperatures: () => axios.get('/extreme-temps'),
-  getTemperaturePrecipitation: () => axios.get('/temp-precipitation'),
-  getStats: () => axios.get('/stats')
+ getMonthlyAverages: () => axios.get('/monthly-avg'),
+ getExtremeTemperatures: () => axios.get('/extreme-temps'),
+ getTemperaturePrecipitation: () => axios.get('/temp-precipitation'),
+ getStats: () => axios.get('/stats')
 }
 ```
 
@@ -688,7 +688,7 @@ aws s3api put-bucket-policy --bucket weatheria-climate-data --policy file://poli
 ```bash
 # Add bootstrap action to install dependencies
 aws emr create-cluster \
-  --bootstrap-actions Path=s3://weatheria-climate-data/scripts/bootstrap.sh
+ --bootstrap-actions Path=s3://weatheria-climate-data/scripts/bootstrap.sh
 ```
 
 #### Problem: Session token expired (AWS Academy)
@@ -720,7 +720,7 @@ bash scripts/aws/download_results.sh
 **Solution:**
 Edit `src/api/config.py`:
 ```python
-allow_origins = ["http://localhost:5173"]  # Specify frontend URL
+allow_origins = ["http://localhost:5173"] # Specify frontend URL
 ```
 
 ### Frontend Issues
@@ -729,14 +729,14 @@ allow_origins = ["http://localhost:5173"]  # Specify frontend URL
 
 **Solutions:**
 1. **Verify backend is running:**
-   ```bash
-   curl http://localhost:8000/health
-   ```
+  ```bash
+  curl http://localhost:8000/health
+  ```
 
 2. **Check API base URL in `src/services/api.ts`:**
-   ```typescript
-   const API_BASE_URL = 'http://localhost:8000';
-   ```
+  ```typescript
+  const API_BASE_URL = 'http://localhost:8000';
+  ```
 
 3. **Check browser console for CORS errors** - see Backend API Issues above
 
@@ -768,19 +768,19 @@ npm install
 **Solution:**
 ```python
 # In scripts/download_data.py, increase timeout
-response = requests.get(url, timeout=60)  # Increase from 30 to 60 seconds
+response = requests.get(url, timeout=60) # Increase from 30 to 60 seconds
 
 # Add retry logic
 from time import sleep
 for attempt in range(3):
-    try:
-        response = requests.get(url, timeout=60)
-        break
-    except requests.Timeout:
-        if attempt < 2:
-            sleep(10)
-        else:
-            raise
+  try:
+    response = requests.get(url, timeout=60)
+    break
+  except requests.Timeout:
+    if attempt < 2:
+      sleep(10)
+    else:
+      raise
 ```
 
 ### General Tips
@@ -808,11 +808,3 @@ for attempt in range(3):
 ### Academic Resources
 - White, T. (2015). *Hadoop: The Definitive Guide* (4th ed.). O'Reilly Media.
 - Dean, J., & Ghemawat, S. (2008). MapReduce: Simplified Data Processing on Large Clusters. *Communications of the ACM*, 51(1), 107-113.
-
----
-
-**Project by:** Juan Manuel Marín Restrepo, Sebastian Franco Mesa  
-**Course:** Telemática  
-**Institution:** Universidad EAFIT  
-**Date:** November 2024  
-**License:** MIT
